@@ -1,0 +1,27 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+  user(id: ID): User!
+  pet(id: ID): Pet!
+  users: [User!]!
+}
+
+type User {
+  id: ID
+  name: String
+}
+
+type Pet {
+  id: ID
+  name: String
+}
+
+input NewUser {
+  name: String!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+}
