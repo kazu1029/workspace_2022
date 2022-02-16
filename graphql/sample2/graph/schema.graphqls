@@ -1,0 +1,34 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Article {
+    id: Int!
+    author: String!
+    title: String!
+    content: String!
+}
+
+input CreateInput {
+    author: String!
+    title: String!
+    content: String!
+}
+
+input UpdateInput {
+    id: Int!
+    author: String!
+    title: String!
+    content: String!
+}
+
+type Mutation {
+    createArticle(input: CreateInput!): Article!
+    updateArticle(input: UpdateInput!): Article!
+    deleteArticle(input: Int!): Int!
+}
+
+type Query {
+    article(input: Int!): Article!
+    articles: [Article!]!
+}
