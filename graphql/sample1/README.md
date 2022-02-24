@@ -5,3 +5,4 @@
 
 ## References
 - https://gqlgen.com/getting-started/
+- https://github.com/99designs/gqlgen
