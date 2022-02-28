@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    ports:
+      - "50051:50051"
+    container_name: server
+    command: bash -c "go run server/server.go"
+    environment:
+      - MONGO_URI=mongodb://admin:password@mongo:27017
+    depends_on:
+      - mongo
+    volumes:
+      - ./api:/go/src/github.com/kazu1029/workspace_2022/grpc/grpc-docker-todo/api
+
+  client:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    container_name: client
+    depends_on:
+      - server
+    volumes:
+      - ./api:/go/src/github.com/kazu1029/workspace_2022/grpc/grpc-docker-todo/api
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
